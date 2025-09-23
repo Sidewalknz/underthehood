@@ -1,0 +1,89 @@
+/* --- Fixed, floating nav with no scroll movement --- */
+
+.header {
+  --header-offset: 1rem;  /* breathing room from top edge */
+  --nav-height: 64px;     /* increased visual height for breathing room */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 50;
+  padding-top: var(--header-offset);
+  pointer-events: none;
+  contain: paint;
+}
+
+/* Spacer to prevent jump under fixed header */
+.offset {
+  height: calc(var(--header-offset) + var(--nav-height));
+}
+
+/* constrain width so the nav only extends “so big” */
+.navWrapper {
+  max-width: 1220px;
+  margin-inline: auto;
+  padding-inline: 1.5rem; /* increased from 1rem */
+}
+
+/* the floating nav “card” */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Background SVG (stretched) */
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: 100% 100%;
+  color: var(--background);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem; /* more left/right breathing room */
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  backdrop-filter: saturate(1.05);
+
+  pointer-events: auto;
+  min-height: var(--nav-height);
+}
+
+/* Left */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Right */
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* increased from 1.5rem */
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: var(--background);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.navLinks a:hover {
+  color: var(--brand-orange);
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .navWrapper {
+    padding-inline: 1rem; /* still tighter for small screens */
+  }
+
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navLinks {
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+}

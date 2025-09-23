@@ -1,0 +1,87 @@
+.hero {
+  color: var(--foreground);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: var(--brand-orange);
+  display: block;
+  font-size: 7rem;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  font-family: 'Gaegu', cursive;
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: cover;
+  color: var(--background);
+  border: none;
+  position: relative;
+}
+
+.primaryBtn:hover,
+.secondaryBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* Decorative crosses */
+.decor {
+  position: absolute;
+  opacity: 0.25;
+  animation: snapRotate 5s infinite steps(1);
+}
+
+/* offsets to desync */
+.decor1 { top: 10%; left: 5%;  animation-delay: 0s; }
+.decor2 { bottom: 15%; right: 8%; animation-delay: 1s; }
+.decor3 { top: 20%; right: 20%; animation-delay: 2.5s; }
+.decor4 { bottom: 10%; left: 15%; animation-delay: 3.5s; }
+
+@keyframes snapRotate {
+  0%, 20%   { transform: rotate(0deg); }
+  30%, 50%  { transform: rotate(20deg); -webkit-transform: rotate(20deg); -moz-transform: rotate(20deg); -ms-transform: rotate(20deg); -o-transform: rotate(20deg); }
+  60%, 100% { transform: rotate(0deg); }
+}

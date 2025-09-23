@@ -1,0 +1,45 @@
+/* Divider.module.css */
+.divider {
+  /* ==== knobs ==== */
+  --tile-w: 512px;         /* visual width of one tile on screen (bigger = more zoomed in) */
+  --height: 60px;          /* divider height on the page */
+  --vb-h: 104.11;          /* SVG viewBox height you provided */
+  --edge-trim-u: -18;       /* how many SVG units to trim from EACH SIDE (tweak this) */
+
+  /* derived: convert the SVG-unit trim into pixels at the current height */
+  --edge-trim: calc((var(--edge-trim-u) / var(--vb-h)) * var(--height));
+
+  width: 100%;
+  height: var(--height);
+
+  background-image: url("/icons/section-divider.svg");
+  background-repeat: repeat-x;
+
+  /* shift left by the trim amount so the tile’s painted area starts at x=0 */
+  background-position: calc(var(--edge-trim) * -1) top;
+
+  /* overdraw the tile so its painted area overlaps neighbors (hides gaps) */
+  background-size: calc(var(--tile-w) + (var(--edge-trim) * 2)) 100%;
+
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Normal: overlap the section below */
+.overlapBelow {
+  margin-bottom: calc(var(--overlap, 20px) * -1);
+  padding-bottom: var(--overlap, 20px);
+}
+
+/* Flipped: overlap the section above */
+.overlapAbove {
+  margin-top: calc(var(--overlap, 20px) * -1);
+  padding-top: var(--overlap, 20px);
+}
+
+/* Flip vertically (doesn’t affect background tiling) */
+.flip {
+  transform: scaleY(-1);
+  transform-origin: center;
+}
