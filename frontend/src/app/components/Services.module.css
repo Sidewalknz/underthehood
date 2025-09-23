@@ -25,15 +25,41 @@
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.2); /* subtle contrast box */
+  position: relative;
   padding: 2rem;
-  border-radius: 12px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  overflow: hidden;
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: cover;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  transition: background 0.25s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  background: rgba(0, 0, 0, 0.35);
+}
+
+/* icon at top of card */
+.icon {
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+.title,
+.text {
+  position: relative;
+  z-index: 1;
 }
 
 .title {
@@ -48,7 +74,7 @@
   line-height: 1.6;
 }
 
-/* Responsive: stack on smaller screens */
+/* Responsive */
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
