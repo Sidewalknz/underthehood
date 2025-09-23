@@ -1,0 +1,108 @@
+[
+  {
+    "id": "rub-chicken",
+    "name": "Tips Up Chicken Rub",
+    "description": "Need a quick-fire, winner-winner chicken dinner? Fire up the barbie, oil your bird, then dust her down for her big night out with the Under the Hood Chicken Rub. Make her a little sweet, but not too much heat — that’s how we like it! Serve her up with a gentle dose of Under the Hood Sauce for the ultimate condiment complement.",
+    "image": "/products/rub-chicken.webp",
+    "art": "/products/art-chicken.webp",
+    "category": "Rub",
+    "price": 15.0,
+    "colour": "#FFB400",
+    "ingredients": [
+      "Sugar",
+      "Salt",
+      "Garlic",
+      "Smoked Paprika",
+      "Pepper",
+      "Rice Flour",
+      "Herbs",
+      "Mustard"
+    ],
+    "brandTitle": "Tips Up",
+    "brandSubtitle": "Chicken",
+    "brandCategory": "Rub"
+  },
+    {
+    "id": "rub-beef",
+    "name": "Girthy Beef Rub",
+    "description": "Add a kick of moo to any cut of beef with this smoky grilling game-changer. With more balance than a bull-rider on a tight-rope, these four ingredients work in harmony to give your beef the right amount of flavour, texture, and black pepper bite. Sprinkle it on, rub it down, then let the power of barbecue do the rest.",
+    "image": "/products/rub-beef.webp",
+    "art": "/products/art-beef.webp",
+    "category": "Rub",
+    "price": 15.0,
+    "colour": "#7D0B16",
+    "ingredients": [
+      "Salt",
+      "Garlic",
+      "Smoked Paprika",
+      "Pepper"
+    ],
+    "brandTitle": "Girthy",
+    "brandSubtitle": "Beef",
+    "brandCategory": "Rub"
+  },
+    {
+    "id": "rub-lamb",
+    "name": "Fully Loaded Lamb Rub",
+    "description": "You can’t cook New Zealand lamb without this chunky-cut herb hero. Rosemary, thyme, garlic, and flaky sea salt are an unstoppable force of flavour that will remind you why you love grilling so much. Perfect for creating a crispy crust on a lamb forequarter, or simply sprinkle onto chops for the classic Kiwi barbecue. Give Nana’s Sunday roast a flame-grilled run for its money!",
+    "image": "/products/rub-lamb.webp",
+    "art": "/products/art-lamb.webp",
+    "category": "Rub",
+    "price": 15.0,
+    "colour": "#386C34",
+    "ingredients": [
+      "Salt",
+      "Garlic",
+      "Thyme",
+      "Pepper",
+      "Rosemary",
+      "Parsley",
+      "Celery Seed",
+      "Rice Flour"
+    ],
+    "brandTitle": "Fully Loaded",
+    "brandSubtitle": "Lamb",
+    "brandCategory": "Rub"
+  },
+      {
+    "id": "rub-pork",
+    "name": "Big Butt Pork Rub",
+    "description": "Get this tasty rub smothered all over your boston butt for the ultimate pulled pork. The flavour will keep the whole family happy with the classic sweet, smoky, profile with just a small whisper of heat. Don’t forget to pick up a bottle of Under the Hood Sauce as well for a match made in heaven!",
+    "image": "/products/rub-pork.webp",
+    "art": "/products/art-pork.webp",
+    "category": "Rub",
+    "price": 15.0,
+    "colour": "#A52038",
+    "ingredients": [
+      "Sugar",
+      "Salt",
+      "Chilli",
+      "Smoked Paprika",
+      "Garlic",
+      "Rice Flour",
+      "Pepper",
+      "Celery Seed"
+    ],
+    "brandTitle": "Big Butt",
+    "brandSubtitle": "Pork",
+    "brandCategory": "Rub"
+  },
+      {
+    "id": "rub-gps",
+    "name": "All Purpose GPS Rub",
+    "description": "Our all purpose GPS Rub is your magic ingredient to make anything taste sensational. A careful balance of garlic, pepper and salt, GPS will lead you on delicious adventures to new lands of flavour. When you throw it on barbecued meat and grilled veges, you’ll be met with a resounding chorus of ‘mmmm’ and ‘ahhhh’.",
+    "image": "/products/rub-gps.webp",
+    "art": "/products/art-gps.webp",
+    "category": "Rub",
+    "price": 15.0,
+    "colour": "#181617",
+    "ingredients": [
+      "Salt",
+      "Garlic",
+      "Pepper"
+    ],
+    "brandTitle": "All purpose",
+    "brandSubtitle": "GPS",
+    "brandCategory": "Rub"
+  }
+]

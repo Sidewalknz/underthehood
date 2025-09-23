@@ -1,15 +1,16 @@
 import Hero from "./components/Hero";
-import Services from "./components/Services";
 import Divider from "./components/Divider";
+import Services from "./components/Services";
+import Products from "./components/Products";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Divider />         {/* Normal divider */}
+      <Divider />
       <Services />
-      <Divider flip />    {/* Flipped divider */}
-      {/* Other sections */}
+      <Divider flip />
+      <Products />
     </>
   );
 }

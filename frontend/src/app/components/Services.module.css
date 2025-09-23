@@ -3,6 +3,7 @@
   color: var(--background);
   padding: 6rem 2rem;
   text-align: center;
+  min-height: 50vh;
 }
 
 .inner {

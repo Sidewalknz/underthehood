@@ -1,0 +1,192 @@
+.products {
+  color: var(--foreground);
+  padding: 6rem 2rem;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* container with decorative background */
+.thumbWrap {
+  position: relative;
+  width: 100%;
+  padding-top: 72%; /* aspect ratio container */
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  will-change: transform; /* smoother scaling */
+}
+
+/* scale the wrapper (prevents image clipping) */
+.thumbWrap:hover,
+.thumbWrap:focus-within {
+  transform: scale(1.02);
+}
+
+/* background SVG visible in its native colors */
+.maskBg {
+  position: absolute;
+  inset: 0;
+  background: url("/icons/bg-product.svg") no-repeat center;
+  background-size: contain;
+}
+
+/* colored overlay, hidden by default */
+.maskBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-colour, #EDEDED);
+  opacity: 0;
+
+  -webkit-mask-image: url("/icons/bg-product.svg");
+  mask-image: url("/icons/bg-product.svg");
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+
+  transition: opacity 0.25s ease;
+}
+
+/* fade in the overlay color on hover */
+.thumbWrap:hover .maskBg::after,
+.thumbWrap:focus-within .maskBg::after {
+  opacity: 1;
+}
+
+/* --- Crossfade stack ---------------------------------- */
+/* shared image base styles */
+.thumbBase {
+  position: absolute !important; /* Next/Image with fill uses position: absolute */
+  inset: 0;
+  object-fit: contain;
+  pointer-events: none; /* prevent overlay from catching events */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: opacity 0.25s ease;
+  will-change: opacity;
+}
+
+/* masked image (visible by default) */
+.thumbMasked {
+  z-index: 1;
+  opacity: 1;
+
+  -webkit-mask-image: url("/icons/bg-product.svg");
+  mask-image: url("/icons/bg-product.svg");
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* unmasked full image (hidden by default) */
+.thumbFull {
+  z-index: 2; /* sits above masked layer so the fade looks like a reveal */
+  opacity: 0;
+}
+
+/* crossfade on hover/focus */
+.thumbWrap:hover .thumbMasked,
+.thumbWrap:focus-within .thumbMasked {
+  opacity: 0;
+}
+
+.thumbWrap:hover .thumbFull,
+.thumbWrap:focus-within .thumbFull {
+  opacity: 1;
+}
+
+/* text row */
+.info {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0.25rem;
+}
+
+.title {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* view all button */
+.allWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.allBtn {
+  font-family: 'Gaegu', cursive;
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: cover;
+  color: var(--background);
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+.allBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* responsive */
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .thumbWrap,
+  .maskBg::after,
+  .thumbBase,
+  .allBtn {
+    transition: none !important;
+  }
+}
