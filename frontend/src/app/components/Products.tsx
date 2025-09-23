@@ -21,6 +21,11 @@ type Product = {
   brandCategory?: string;
 };
 
+// Allow CSS custom properties (like --bg-colour) safely
+type CSSVariableStyle = React.CSSProperties & {
+  [key: `--${string}`]: string | number;
+};
+
 const ALL_PRODUCTS = productsData as Product[];
 const PRODUCTS: Product[] = ALL_PRODUCTS.slice(0, 3);
 
@@ -36,7 +41,9 @@ export default function Products() {
               <div
                 className={styles.thumbWrap}
                 style={
-                  { ["--bg-colour" as any]: p.colour ?? "#EDEDED" } as React.CSSProperties
+                  {
+                    "--bg-colour": p.colour ?? "#EDEDED",
+                  } as CSSVariableStyle
                 }
               >
                 {/* Native SVG background + hover color overlay */}
