@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Divider from "./components/Divider";
 import { Gaegu, Barlow_Condensed } from "next/font/google";
 
 export const metadata: Metadata = {
@@ -31,6 +33,8 @@ export default function RootLayout({
       <body className={gaegu.className}>
         <Navbar />
         {children}
+        <Divider />
+        <Footer /> 
       </body>
     </html>
   );

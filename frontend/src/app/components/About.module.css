@@ -1,0 +1,128 @@
+.about {
+  background: var(--foreground);
+  color: var(--background);
+  padding: 6rem 2rem;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.heading {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.tagline {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.copy {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.copy p + p {
+  margin-top: 1.25rem;
+}
+
+/* pullquote with orange accent */
+.pullquote {
+  font-size: 1.35rem;
+  font-weight: 700;
+  padding: 1rem 1.25rem;
+  border-left: 6px solid var(--brand-orange);
+  background: rgba(242, 101, 34, 0.08);
+  border-radius: 8px;
+}
+
+.highlight {
+  color: var(--brand-orange);
+}
+
+/* signature with crown icon */
+.signature {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.crownIcon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+/* optional image/art */
+.art {
+  position: relative;
+  min-height: 320px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.artBg {
+  position: absolute;
+  inset: 0;
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: cover;
+  opacity: 0.15;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+/* default states */
+.svgImg {
+  opacity: 1;
+  z-index: 1;
+}
+
+.photoImg {
+  opacity: 0;
+  z-index: 2;
+}
+
+/* hover swap */
+.art:hover .svgImg {
+  opacity: 0;
+}
+
+.art:hover .photoImg {
+  opacity: 1;
+}
+
+/* 2-column on larger screens */
+@media (min-width: 950px) {
+  .grid {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}

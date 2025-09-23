@@ -1,0 +1,163 @@
+.footer {
+  background: var(--foreground);
+  color: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+/* layout */
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+/* columns */
+.col {
+  align-self: center;
+  min-width: 0;
+}
+
+/* contact list */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.list a {
+  color: var(--background);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.list a:hover {
+  opacity: 0.85;
+}
+
+/* icons with text */
+.iconRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1.2;
+}
+
+.icon {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+/* socials row */
+.socialRow {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;     /* wrap on narrow screens */
+  gap: 1.25rem;
+}
+
+.socialIcon {
+  display: block;
+  width: 34px;
+  height: 34px;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+}
+
+.socialRow a:hover .socialIcon {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+/* logo */
+.logoCol {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  width: 288px;  /* big logo on desktop (~4x) */
+  height: auto;
+  max-width: 100%;
+}
+
+/* credit column */
+.creditCol {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.creditCol a {
+  color: var(--background);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.15s ease;
+}
+
+.creditCol a:hover {
+  opacity: 1;
+}
+
+/* accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .socialIcon {
+    transition: opacity 0.15s ease;
+  }
+  .socialRow a:hover .socialIcon {
+    transform: none;
+  }
+}
+
+/* breakpoints */
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem;
+    padding: 3rem 1.5rem;
+  }
+  .logoCol {
+    order: -1;            /* bring logo to the top */
+    place-items: center;
+  }
+  .logo {
+    width: 220px;         /* scale down a bit on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2.5rem 1.25rem;
+  }
+  .col,
+  .creditCol {
+    justify-content: center;
+    text-align: center;
+  }
+  .iconRow {
+    justify-content: center;
+  }
+  .socialRow {
+    justify-content: center;
+  }
+  .logo {
+    width: 180px;         /* smaller on phones */
+  }
+  .icon,
+  .socialIcon {
+    width: 30px;
+    height: 30px;
+  }
+}

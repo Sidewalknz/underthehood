@@ -1,0 +1,77 @@
+.cta {
+  position: relative;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 6rem 2rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.bar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100%;
+  background: radial-gradient(80% 60% at 50% 10%, rgba(255,255,255,0.08), transparent 60%)
+              no-repeat center/100% 100%;
+  pointer-events: none;
+  opacity: 0.5; /* subtle texture wash */
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 2rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons use Gaegu + bg1.svg */
+.primaryBtn,
+.secondaryBtn {
+  font-family: 'Gaegu', cursive;
+  display: inline-block;
+  padding: 0.95rem 1.75rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: cover;
+  color: var(--background);
+  border: none;
+}
+
+.secondaryBtn {
+  filter: brightness(0.92);
+}
+
+.primaryBtn:hover,
+.secondaryBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* responsive tweaks */
+@media (max-width: 540px) {
+  .title { font-size: 2rem; }
+  .subtitle { font-size: 1.05rem; }
+}
