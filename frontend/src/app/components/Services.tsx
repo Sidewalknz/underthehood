@@ -12,25 +12,22 @@ export default function Services() {
           <div className={styles.card}>
             <h3 className={styles.title}>Masterclasses</h3>
             <p className={styles.text}>
-              Learn the art of BBQ with our hands-on masterclasses — from fire
-              control to perfecting ribs and brisket.
+              Everything needed for the class is supplied and everything we cook - we eat! So rally your mates, wear your stretchy pants and get ready to be filled with BBQ food & knowledge! 
             </p>
           </div>
 
           <div className={styles.card}>
             <h3 className={styles.title}>Catering</h3>
             <p className={styles.text}>
-              Make your events unforgettable with slow-smoked flavors and
-              authentic BBQ, served straight from the pit.
+              Under the Hood BBQ brings the irresistible allure of authentic, slow-cooked barbecue to  events across Nelson and the top of the South Island. Our passionate team specialises in creating mouthwatering feasts that are sure to be a talking point long after the event is over.
             </p>
           </div>
 
           <div className={styles.card}>
             <h3 className={styles.title}>Descaling</h3>
-            <p className={styles.text}>
-              Keep your grills in top shape with our professional cleaning and
-              descaling service, so you can focus on the cook.
-            </p>
+              <p className={styles.text}>
+                If it&apos;s filthy, baked on grime or carbonised grease that&apos;s difficult to shift, let us make easy work of it for you. It won&apos;t remove rust (it can&apos;t turn back time on that) but stainless steel and ceramic finishes come up mint.
+              </p>
           </div>
         </div>
       </div>
