@@ -1,62 +1,51 @@
-/* --- Fixed, floating nav with no scroll movement --- */
-
 .header {
-  --header-offset: 1rem;  /* breathing room from top edge */
-  --nav-height: 64px;     /* increased visual height for breathing room */
+  --header-offset: 1rem;
+  --nav-height: 64px;
 
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-
   z-index: 50;
   padding-top: var(--header-offset);
   pointer-events: none;
   contain: paint;
 }
 
-/* Spacer to prevent jump under fixed header */
 .offset {
   height: calc(var(--header-offset) + var(--nav-height));
 }
 
-/* constrain width so the nav only extends “so big” */
 .navWrapper {
   max-width: 1220px;
   margin-inline: auto;
-  padding-inline: 1.5rem; /* increased from 1rem */
+  padding-inline: 1.5rem;
 }
 
-/* the floating nav “card” */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* Background SVG (stretched) */
   background: url("/icons/bg1.svg") no-repeat center;
   background-size: 100% 100%;
   color: var(--background);
   border-radius: 12px;
-  padding: 0.75rem 1.5rem; /* more left/right breathing room */
-
+  padding: 0.75rem 1.5rem;
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   backdrop-filter: saturate(1.05);
-
   pointer-events: auto;
   min-height: var(--nav-height);
 }
 
-/* Left */
 .logo {
   display: flex;
   align-items: center;
 }
 
-/* Right */
 .navLinks {
   list-style: none;
   display: flex;
-  gap: 2rem; /* increased from 1.5rem */
+  gap: 2rem;
   margin: 0;
   padding: 0;
 }
@@ -72,18 +61,66 @@
   color: var(--brand-orange);
 }
 
-/* Small screens */
-@media (max-width: 480px) {
-  .navWrapper {
-    padding-inline: 1rem; /* still tighter for small screens */
-  }
+/* Burger menu */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
 
-  .navbar {
-    padding: 0.5rem 1rem;
-  }
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: var(--background);
+  transition: all 0.3s ease;
+}
 
+/* Mobile menu */
+.mobileNav {
+  display: none;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  background: url("/icons/bg1.svg") no-repeat center;
+  background-size: 100% 100%;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  color: var(--background);
+}
+
+.mobileNav a {
+  font-size: 1.1rem;
+}
+
+/* Active burger */
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .navLinks {
-    gap: 1rem;
-    font-size: 0.95rem;
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .mobileNav {
+    display: flex;
+  }
+
+  .mobileNav.hidden {
+    display: none;
   }
 }
