@@ -29,7 +29,6 @@
   background: url("/icons/bg1.svg") no-repeat center;
   background-size: 100% 100%;
   color: var(--background);
-  border-radius: 12px;
   padding: 0.75rem 1.5rem;
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   backdrop-filter: saturate(1.05);
