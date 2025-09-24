@@ -1,8 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import styles from "./ProductPage.module.css";
 import productsData from "@/data/products.json";
@@ -30,7 +28,6 @@ function getProduct(id: string) {
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = getProduct(params.id);
-  const pathname = usePathname();
   if (!product) return notFound();
 
   // Only show other products in the thumbnails column
@@ -102,7 +99,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           <div className={styles.pickerInner}>
             <ul className={styles.pickerList}>
               {otherProducts.map((p) => {
-                const active = pathname.endsWith(`/shop/${p.id}`);
+                const active = p.id === product.id; // no usePathname needed
                 const thumbSrc = p.thumbnail || p.image; // fallback just in case
 
                 return (

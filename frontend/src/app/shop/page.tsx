@@ -20,6 +20,6 @@ const PRODUCTS: Product[] = productsData as Product[];
 
 export default function ShopPage() {
   const first = PRODUCTS[0];
-  if (!first) return notFound(); // handle empty product list
+  if (!first) return notFound();
   redirect(`/shop/${first.id}`);
 }
