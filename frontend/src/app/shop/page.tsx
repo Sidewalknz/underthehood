@@ -1,5 +1,5 @@
 import productsData from "@/data/products.json";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 type Product = {
   id: string;
@@ -18,7 +18,8 @@ type Product = {
 
 const PRODUCTS: Product[] = productsData as Product[];
 
-export default function ShopIndex() {
+export default function ShopPage() {
   const first = PRODUCTS[0];
-  redirect(`/shop/${first?.id ?? ""}`);
+  if (!first) return notFound(); // handle empty product list
+  redirect(`/shop/${first.id}`);
 }
