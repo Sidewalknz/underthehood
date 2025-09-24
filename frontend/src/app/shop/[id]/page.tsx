@@ -26,11 +26,15 @@ function getProduct(id: string) {
   return PRODUCTS.find((p) => p.id === id);
 }
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = getProduct(params.id);
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;           // ✅ Next 15 expects params as a Promise
+  const product = getProduct(id);
   if (!product) return notFound();
 
-  // Only show other products in the thumbnails column
   const otherProducts = PRODUCTS.filter((p) => p.id !== product.id);
 
   return (
@@ -99,8 +103,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           <div className={styles.pickerInner}>
             <ul className={styles.pickerList}>
               {otherProducts.map((p) => {
-                const active = p.id === product.id; // no usePathname needed
-                const thumbSrc = p.thumbnail || p.image; // fallback just in case
+                const active = p.id === product.id;
+                const thumbSrc = p.thumbnail || p.image;
 
                 return (
                   <li key={p.id}>
