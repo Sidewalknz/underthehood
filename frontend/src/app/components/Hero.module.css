@@ -1,87 +1,228 @@
 .hero {
-  color: var(--foreground);
-  min-height: 80vh;
+  color: #111111;
+  min-height: 92vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem;
   position: relative;
   overflow: hidden;
+  background: transparent;
 }
 
 .inner {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
 
+/* Desktop-first type & spacing */
 .title {
-  font-family: var(--font-barlow-condensed), sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 4rem;
   font-weight: 700;
-  line-height: 0.8;
-  margin-bottom: 1.5rem;
+  line-height: 0.9;
+  margin-bottom: 1rem;
 }
 
 .highlight {
-  color: var(--brand-orange);
+  color: #ff6a00;
   display: block;
   font-size: 7rem;
   font-weight: 800;
 }
 
 .subtitle {
-  font-family: var(--font-barlow-condensed), sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 1.5rem;
   margin-bottom: 2.5rem;
   max-width: 650px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0.95;
 }
 
+/* ===========================
+   Hand-drawn bg swipe (bg1.svg)
+   - Text stays static
+   - BG swipes in from left AFTER subtitle reveals
+   =========================== */
+.magicHighlight {
+  position: relative;
+  display: inline-block;
+  padding: 0.10em 0.40em; /* room for the stroke edges */
+  z-index: 0;            /* create a new stacking context */
+  font-weight: 700;
+  color: #111111;
+}
+
+.magicHighlight::before {
+  content: "";
+  position: absolute;
+  inset: 0.4em 0;
+  -webkit-mask: url("/icons/bg1.svg") no-repeat center / cover;
+  mask: url("/icons/bg1.svg") no-repeat center / cover;
+  background-color: #ff6a00; /* 👈 your custom colour here */
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+  z-index: -1;
+}
+
+/* When the subtitle line has revealed (.in), play the swipe on the stroke.
+   The subtitle has .delay1 (140ms) and a 700ms transition, ~840ms total.
+   We delay ~850ms so the BG comes AFTER the text settles.
+*/
+.subtitle.in .magicHighlight::before {
+  animation: bg-swipe-in 700ms cubic-bezier(.21,.91,.29,.99) 850ms forwards;
+}
+
+@keyframes bg-swipe-in {
+  0%   { transform: scaleX(0);   opacity: 0; }
+  1%   { opacity: 1; }                 /* pop on as it starts */
+  100% { transform: scaleX(1);   opacity: 1; }
+}
+
+/* Optional: once in, add a super subtle resting breathe */
+.subtitle.in .magicHighlight::before {
+  animation:
+    bg-swipe-in 700ms cubic-bezier(.21,.91,.29,.99) 850ms forwards,
+    bg-rest 6s ease-in-out 1.8s infinite alternate; /* tiny life */
+}
+
+@keyframes bg-rest {
+  from { transform: scaleX(1) translateY(0); }
+  to   { transform: scaleX(1.01) translateY(-1px); }
+}
+
+/* Actions */
 .actions {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .primaryBtn,
 .secondaryBtn {
-  font-family: 'Gaegu', cursive;
+  font-family: "Gaegu", cursive;
   display: inline-block;
   padding: 1rem 2.5rem;
   font-size: 1.25rem;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: 12px;
   text-decoration: none;
-  transition: transform 0.2s ease;
-  background: url("/icons/bg1.svg") no-repeat center;
-  background-size: cover;
-  color: var(--background);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  background: url("/icons/bg1.svg") no-repeat center / cover;
+  color: #ffffff;
   border: none;
   position: relative;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  will-change: transform;
 }
 
 .primaryBtn:hover,
 .secondaryBtn:hover {
   transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
 }
 
-/* Decorative crosses */
-.decor {
+.primaryBtn:focus-visible,
+.secondaryBtn:focus-visible {
+  outline: 3px solid #ff6a00;
+  outline-offset: 3px;
+  transform: translateY(-1px);
+}
+
+/* --- Parallax wrappers --- */
+.parallax {
   position: absolute;
-  opacity: 0.25;
-  animation: snapRotate 5s infinite steps(1);
+  will-change: transform;
+  transform: translate3d(0,0,0);
 }
 
-/* offsets to desync */
-.decor1 { top: 10%; left: 5%;  animation-delay: 0s; }
-.decor2 { bottom: 15%; right: 8%; animation-delay: 1s; }
-.decor3 { top: 20%; right: 20%; animation-delay: 2.5s; }
-.decor4 { bottom: 10%; left: 15%; animation-delay: 3.5s; }
+.decor1 { top: 8%;  left: 5%; }
+.decor2 { bottom: 12%; right: 6%; }
+.decor3 { top: 18%; right: 18%; }
+.decor4 { bottom: 8%; left: 14%; }
 
+/* Decorative image */
+.decor {
+  opacity: 0.22;
+  pointer-events: none;
+  animation:
+    snapRotate 6s steps(1) infinite,
+    floatY 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Deer near text */
+.deer {
+  top: 45%;
+  left: 12%;
+  width: 120px;
+  height: 120px;
+}
+
+/* Scroll-reveal */
+.animate {
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  filter: blur(2px);
+}
+
+.in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition:
+    opacity 700ms cubic-bezier(.21,.91,.29,.99),
+    transform 700ms cubic-bezier(.21,.91,.29,.99),
+    filter 700ms cubic-bezier(.21,.91,.29,.99);
+}
+
+.delay0.in { transition-delay: 0ms; }
+.delay1.in { transition-delay: 340ms; }
+.delay2.in { transition-delay: 660ms; }
+
+/* Keyframes */
 @keyframes snapRotate {
   0%, 20%   { transform: rotate(0deg); }
-  30%, 50%  { transform: rotate(20deg); -webkit-transform: rotate(20deg); -moz-transform: rotate(20deg); -ms-transform: rotate(20deg); -o-transform: rotate(20deg); }
+  30%, 50%  { transform: rotate(20deg); }
   60%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes floatY {
+  from { transform: translateY(-10px); }
+  to   { transform: translateY(10px); }
+}
+
+/* ====== MOBILE (<=768px) ====== */
+@media (max-width: 768px) {
+  .decor3 { display: none; }
+  .decor4 { display: none; }
+  .deer   { display: none; }
+  .decor1 .decor, .decor2 .decor { transform: scale(.8); opacity: .18; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .decor,
+  .animate,
+  .in,
+  .primaryBtn,
+  .secondaryBtn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* show the stroke immediately with no swipe */
+  .magicHighlight::before {
+    transform: scaleX(1) !important;
+    opacity: 1 !important;
+  }
 }

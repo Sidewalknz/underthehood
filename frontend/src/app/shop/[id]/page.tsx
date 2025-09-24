@@ -31,7 +31,7 @@ export default async function ProductPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;           // ✅ Next 15 expects params as a Promise
+  const { id } = await params; // Next 15: params is a Promise
   const product = getProduct(id);
   if (!product) return notFound();
 
@@ -62,8 +62,9 @@ export default async function ProductPage({
           </div>
         </aside>
 
-        {/* CENTER: product information */}
+        {/* CENTER: info (scrolls) + actions (outside the scroll) */}
         <article className={styles.center}>
+          {/* SCROLLABLE CONTENT */}
           <section className={styles.content}>
             {product.description && <p className={styles.desc}>{product.description}</p>}
 
@@ -77,23 +78,29 @@ export default async function ProductPage({
                 </ul>
               </div>
             ) : null}
-
-            {/* Price + Add to Cart in same row */}
-            <div className={styles.actions}>
-              <div className={styles.heroPrice}>£{product.price.toFixed(2)}</div>
-              <Link href={`/shop/add/${product.id}`} className={styles.primaryBtn}>
-                Add to cart
-              </Link>
-            </div>
           </section>
 
-          {/* BRAND LOCKUP (bottom of this section) */}
+          {/* NON-SCROLLING PRICE + ACTIONS */}
+          <div className={styles.actions}>
+            <div className={styles.heroPrice}>£{product.price.toFixed(2)}</div>
+            <Link href={`/shop/add/${product.id}`} className={styles.primaryBtn}>
+              Add to cart
+            </Link>
+          </div>
+
+          {/* BRAND LOCKUP (bottom of the center section) */}
           {(product.brandTitle || product.brandSubtitle || product.brandCategory) && (
             <div className={styles.brandLockup}>
               <div className={styles.brandShape} aria-hidden="true" />
-              {product.brandTitle && <span className={styles.brandTitleBig}>{product.brandTitle}</span>}
-              {product.brandSubtitle && <span className={styles.brandSubtitleHuge}>{product.brandSubtitle}</span>}
-              {product.brandCategory && <span className={styles.brandCategoryBig}>{product.brandCategory}</span>}
+              {product.brandTitle && (
+                <span className={styles.brandTitleBig}>{product.brandTitle}</span>
+              )}
+              {product.brandSubtitle && (
+                <span className={styles.brandSubtitleHuge}>{product.brandSubtitle}</span>
+              )}
+              {product.brandCategory && (
+                <span className={styles.brandCategoryBig}>{product.brandCategory}</span>
+              )}
             </div>
           )}
         </article>

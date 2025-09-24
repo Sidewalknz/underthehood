@@ -44,7 +44,7 @@
 
 .productImg { object-fit: contain; }
 
-/* CENTER (make it a column so brand block can sit at the bottom) */
+/* CENTER (column so brand block can sit at the bottom) */
 .center {
   display: flex;
   flex-direction: column;
@@ -86,13 +86,13 @@
   font-weight: 700;
 }
 
-/* Price + actions row */
+/* Price + actions row (now OUTSIDE the scroll area) */
 .actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
 }
 
 .heroPrice {
